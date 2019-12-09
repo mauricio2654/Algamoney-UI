@@ -48,7 +48,7 @@
               {{lancamento.valor | currency: 'BRL':true:'1.2-2'}}</td>
             <td class="col-acoes-content">
               <a style="margin-right: 2px;" pTooltip="Editar" tooltipPosition="top" pButton icon="pi pi-pencil"></a>
-              <button pButton pTooltip="Excluir" tooltipPosition="top" (click)="excluir(lancamento)"
+              <button pButton pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(lancamento)"
                 icon="pi pi-trash"></button>
             </td>
           </tr>

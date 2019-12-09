@@ -1,10 +1,9 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LazyLoadEvent } from 'primeng/api/public_api';
-import { ToastyService } from 'ng2-toasty';
+import { LazyLoadEvent, ConfirmationService, MessageService } from 'primeng/api';
 
 import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -19,7 +18,9 @@ export class LancamentosPesquisaComponent implements OnInit {
   @ViewChild('tabela', { static: true }) grid;
   constructor(
     private lancamentoService: LancamentoService,
-    private toasty: ToastyService
+    private errorHandler: ErrorHandlerService,
+    private messageService: MessageService,
+    private confirmation: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -31,7 +32,8 @@ export class LancamentosPesquisaComponent implements OnInit {
       .then(resultado => {
         this.lancamentos = resultado.lancamentos;
         this.totalRegitros = resultado.total;
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -39,11 +41,25 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
+  confirmarExclusao(lancamento: any) {
+    this.confirmation.confirm({
+      message: 'Deseja realmente excluir?',
+      accept: () => {
+        this.excluir(lancamento);
+      }
+    });
+  }
+
+  excluidoComSucesso() {
+    this.messageService.add({ severity: 'success', summary: 'Exclusão', detail: 'Exclusão realizada com sucesso' });
+  }
+
   excluir(lancamento: any) {
     this.lancamentoService.excluir(lancamento.codigo)
       .then(() => {
         this.grid.reset();
-        this.toasty.success('Lançamento Excluído com Sucesso!');
-      });
+        this.excluidoComSucesso();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 }

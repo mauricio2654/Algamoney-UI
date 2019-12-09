@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './error-handler.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+  ],
+  providers: [
+    ErrorHandlerService
   ]
 })
 export class CoreModule { }

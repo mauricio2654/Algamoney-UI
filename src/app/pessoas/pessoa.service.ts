@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import * as moment from 'moment';
-
 export class PessoaFiltro {
   nome: string;
   pagina = 0;
@@ -41,10 +39,38 @@ export class PessoaService {
   }
 
   listarTodas(): Promise<any> {
-    const headers = new HttpHeaders();
-    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     return this.http.get(this.pessoaUrl, { headers })
-      .toPromise();
+      .toPromise()
+      .then(response => {
+        const pessoas = response[`content`];
+        return pessoas;
+      });
+  }
+
+  excluir(codigo: number): Promise<void> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    return this.http.delete(this.pessoaUrl + '/' + codigo, { headers })
+      .toPromise()
+      .then(() => null);
+
+  }
+
+  ativarOuDesativar(pessoa: any): Promise<void> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    if (pessoa.ativo) {
+      pessoa.ativo = false;
+    } else {
+      pessoa.ativo = true;
+    }
+    console.log(this.pessoaUrl + '/' + pessoa.codigo + '/' + 'ativo');
+    return this.http.put(this.pessoaUrl + '/' + pessoa.codigo + '/' + 'ativo', pessoa.ativo, { headers })
+      .toPromise()
+      .then(() => null);
   }
 }
