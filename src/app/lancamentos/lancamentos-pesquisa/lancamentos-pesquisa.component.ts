@@ -4,6 +4,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent, ConfirmationService, MessageService } from 'primeng/api';
 
 import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
+import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -20,10 +22,13 @@ export class LancamentosPesquisaComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private errorHandler: ErrorHandlerService,
     private messageService: MessageService,
-    private confirmation: ConfirmationService
+    private confirmation: ConfirmationService,
+    private title: Title,
+    public auth: AuthService
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de Lançamentos');
   }
 
   pesquisar(pagina = 0) {

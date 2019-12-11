@@ -16,19 +16,18 @@ import { DropdownModule } from 'primeng/dropdown';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { SharedModule } from './../shared/shared.module';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 @NgModule({
   declarations: [
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
   ],
-  exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
-  ],
+  exports: [],
   imports: [
     CommonModule,
     FormsModule,
+
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -39,7 +38,9 @@ import { SharedModule } from './../shared/shared.module';
     DropdownModule,
     CurrencyMaskModule,
     InputMaskModule,
-    SharedModule
+
+    SharedModule,
+    LancamentosRoutingModule
   ],
   providers: []
 })

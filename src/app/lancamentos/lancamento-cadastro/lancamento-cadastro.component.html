@@ -2,7 +2,7 @@
   <form #lancamentoForm="ngForm" autocomplete="off" (ngSubmit)="salvar(lancamentoForm)">
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Novo Lançamento</h1>
+        <h1>{{ editando ? 'Edição de' : 'Novo' }} Lançamento</h1>
       </div>
       <div class="ui-g-12">
         <p-selectButton name="tipo" [(ngModel)]="lancamento.tipo" [options]="tipos" #tipo></p-selectButton>
@@ -46,8 +46,8 @@
       </div>
       <div class="ui-g-12">
         <button pButton [disabled]="!lancamentoForm.valid" type="submit" label="Salvar"></button>
-        <button pButton type="button" style="margin-left: 4px;" label="Novo" class="ui-button-info"></button>
-        <a href="javascript:;" style="margin-left: 4px;">Voltar para a pesquisa</a>
+        <button pButton (click)="novo(lancamentoForm)" type="button" style="margin-left: 4px;" label="Novo" class="ui-button-info"></button>
+        <a routerLink="/lancamentos" style="margin-left: 4px;">Voltar para a pesquisa</a>
       </div>
     </div>
   </form>

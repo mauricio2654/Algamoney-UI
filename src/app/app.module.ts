@@ -5,17 +5,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { AppComponent } from './app.component';
 
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
-import { AppComponent } from './app.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { CategoriaService } from './categorias/categoria.service';
 import { PessoaService } from './pessoas/pessoa.service';
+import { AppRoutingModule } from './app-routing.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 registerLocaleData(localePt);
 
@@ -26,12 +28,16 @@ registerLocaleData(localePt);
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    LancamentosModule,
-    PessoasModule,
-    CoreModule,
     HttpClientModule,
+
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+
+    PessoasModule,
+    LancamentosModule,
+    CoreModule,
+    SegurancaModule,
+    AppRoutingModule
   ],
   providers: [
     LancamentoService,

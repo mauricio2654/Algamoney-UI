@@ -56,6 +56,7 @@ export class PessoasPesquisaComponent implements OnInit {
   excluir(codigo: number) {
     this.pessoaService.excluir(codigo)
       .then(() => {
+        this.grid.reset();
         this.excluidoComSucesso();
       })
       .catch(erro => this.errorHandler.handle(erro));

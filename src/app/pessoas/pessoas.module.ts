@@ -1,3 +1,4 @@
+import { PessoasRoutingModule } from './pessoas-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,13 +23,11 @@ import { SharedModule } from './../shared/shared.module';
     PessoaCadastroComponent,
     PessoasPesquisaComponent
   ],
-  exports: [
-    PessoaCadastroComponent,
-    PessoasPesquisaComponent
-  ],
+  exports: [],
   imports: [
     CommonModule,
     FormsModule,
+
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -39,7 +38,9 @@ import { SharedModule } from './../shared/shared.module';
     DropdownModule,
     CurrencyMaskModule,
     InputMaskModule,
-    SharedModule
+
+    SharedModule,
+    PessoasRoutingModule
   ]
 })
 export class PessoasModule { }
