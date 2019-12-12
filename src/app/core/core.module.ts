@@ -1,13 +1,16 @@
 import { ErrorHandlerService } from './error-handler.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Title } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 import { NavbarComponent } from './navbar/navbar.component';
-import { RouterModule } from '@angular/router';
-import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
-import { Title } from '@angular/platform-browser';
 import { AuthService } from '../seguranca/auth.service';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    DialogModule,
+    ButtonModule
   ],
   providers: [
     ErrorHandlerService,

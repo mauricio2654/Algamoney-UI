@@ -55,6 +55,27 @@ export class LancamentoService {
       });
   }
 
+  pesquisarRelatorio(filtro: LancamentoFiltro): Promise<any> {
+    let params = new HttpParams();
+
+    if (filtro.dataVencimentoInicio) {
+      params = params.set('dataVencimentoDe', moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD'));
+    }
+
+    if (filtro.dataVencimentoFim) {
+      params = params.set('dataVencimentoAte', moment(filtro.dataVencimentoFim).format('YYYY-MM-DD'));
+    }
+    return this.http.get(`${this.lancamentoUrl}?resumo`, { params })
+      .toPromise()
+      .then(response => {
+        const lancamentos = response[`content`];
+        const resultado = {
+          lancamentos
+        };
+        return resultado;
+      });
+  }
+
   excluir(codigo: number): Promise<void> {
     return this.http.delete(this.lancamentoUrl + '/' + codigo)
       .toPromise()

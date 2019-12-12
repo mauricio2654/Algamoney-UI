@@ -95,7 +95,9 @@
               "node_modules/ng2-toasty/style-bootstrap.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.js"
+            ]
           }
         },
         "lint": {

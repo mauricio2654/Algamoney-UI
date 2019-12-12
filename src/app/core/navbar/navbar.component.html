@@ -3,17 +3,40 @@
   <div class="container">
     <div class="ui-g">
       <div class="ui-g-12">
-        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="pi pi-bars"></i></a>
+        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i
+            class="pi pi-bars"></i></a>
+        <a href="javascript:;" style="margin: 10px;" (click)="showDialog()" class="navbar-toggle"><i
+            class="pi pi-clock"></i></a>
       </div>
     </div>
   </div>
 
+  <p-dialog header="Ponto" [(visible)]="display" [modal]="true" [responsive]="true"
+    [style]="{width: '400px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000">
+    <div align="center">
+      <p>Usuário: <b>{{auth.jwtPayLoad?.nome}}</b></p>
+      <br>
+      <br>
+    </div>
+    <div align="center">
+      <button [disabled]="registrado" pButton type="button" (click)="registraPonto()"
+        icon="{{isEntrada ? 'pi pi-arrow-up':'pi pi-arrow-down'}}" label=" {{isEntrada?'Entrada':'Saída'}}"></button>
+    </div>
+    <br>
+    <br>
+    <p-footer>
+      <div>
+        <p>Registro mais recente em {{horaPonto}}</p>
+      </div>
+    </p-footer>
+  </p-dialog>
+
   <ul class="navbar-menu" [hidden]="!exibindoMenu">
     <li class="navbar-usuario">{{auth.jwtPayLoad?.nome}}</li>
-    <li class="navbar-menuitem" routerLinkActive="ativo"
-    *ngIf="auth.temPermissao('ROLE_PESQUISAR_LANCAMENTO')"><a routerLink="/lancamentos">Lançamentos</a></li>
-    <li class="navbar-menuitem" routerLinkActive="ativo"
-    *ngIf="auth.temPermissao('ROLE_PESQUISAR_PESSOA')"><a routerLink="/pessoas">Pessoas</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_LANCAMENTO')"><a
+        routerLink="/lancamentos">Lançamentos</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" *ngIf="auth.temPermissao('ROLE_PESQUISAR_PESSOA')"><a
+        routerLink="/pessoas">Pessoas</a></li>
     <li class="navbar-menuitem"><a href="javascript:;" (click)="logout()">Logout</a></li>
   </ul>
 

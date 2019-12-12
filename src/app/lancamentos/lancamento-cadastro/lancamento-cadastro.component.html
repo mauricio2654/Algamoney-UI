@@ -9,7 +9,8 @@
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" name="vencimento" #vencimento="ngModel" [(ngModel)]="lancamento.dataVencimento" required></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" name="vencimento" #vencimento="ngModel"
+          [(ngModel)]="lancamento.dataVencimento" required></p-calendar>
         <app-message [control]="vencimento" error="required" text="A data de vencimento é obrigatória"></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -18,7 +19,8 @@
       </div>
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Descrição</label>
-        <input pInputText name="descricao" #descricao="ngModel" [(ngModel)]="lancamento.descricao" type="text" required minlength="5">
+        <input pInputText name="descricao" #descricao="ngModel" [(ngModel)]="lancamento.descricao" type="text" required
+          minlength="5">
         <app-message [control]="descricao" error="required" text="A descrição é obrigatória"></app-message>
         <app-message [control]="descricao" error="minlength" text="A descrição precisa ser maior"></app-message>
       </div>
@@ -30,23 +32,26 @@
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown name="categoria" #categoria="ngModel" [(ngModel)]="lancamento.categoria.codigo" [options]="categorias"
-          placeholder="Selecione uma Categoria" [filter]="true" filterBy="label" required></p-dropdown>
+        <p-dropdown name="categoria" #categoria="ngModel" [(ngModel)]="lancamento.categoria.codigo"
+          [options]="categorias" placeholder="Selecione uma Categoria" [filter]="true" filterBy="label" required>
+        </p-dropdown>
         <app-message [control]="categoria" error="required" text="A categoria é obrigatória"></app-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown name="pessoa" #pessoa="ngModel" [(ngModel)]="lancamento.pessoa.codigo" [options]="pessoas" placeholder="Selecione uma Pessoa"
-          [filter]="true" filterBy="label" required></p-dropdown>
+        <p-dropdown name="pessoa" #pessoa="ngModel" [(ngModel)]="lancamento.pessoa.codigo" [options]="pessoas"
+          placeholder="Selecione uma Pessoa" [filter]="true" filterBy="label" required></p-dropdown>
         <app-message [control]="pessoa" error="required" text="A pessoa é obrigatória"></app-message>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
-        <textarea [rows]="5" [cols]="30" name="observacao" [(ngModel)]="lancamento.observacao" pInputTextarea autoResize="autoResize"></textarea>
+        <textarea [rows]="5" [cols]="30" name="observacao" [(ngModel)]="lancamento.observacao" pInputTextarea
+          autoResize="autoResize"></textarea>
       </div>
       <div class="ui-g-12">
         <button pButton [disabled]="!lancamentoForm.valid" type="submit" label="Salvar"></button>
-        <button pButton (click)="novo(lancamentoForm)" type="button" style="margin-left: 4px;" label="Novo" class="ui-button-info"></button>
+        <button pButton (click)="novo(lancamentoForm)" type="button" style="margin-left: 4px;" label="Novo"
+          class="ui-button-info"></button>
         <a routerLink="/lancamentos" style="margin-left: 4px;">Voltar para a pesquisa</a>
       </div>
     </div>
